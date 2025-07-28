@@ -46,6 +46,7 @@ model Session {
 }
 
 model Follow {
+  id          String @id @default(cuid())
   followerId  String
   follower    User   @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
   followingId String
