@@ -12,9 +12,10 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { cache } from "react"
 import UserPosts from "./UserPosts"
+import Linkify from "@/components/Linkify"
 
 interface PageProps {
-    params: { username: string }
+    params: Promise<{ username: string }>
 }
 
 const getUser = cache(async (username: string, loggedInUserId: string) => {
@@ -33,7 +34,9 @@ const getUser = cache(async (username: string, loggedInUserId: string) => {
     return user
 })
 
-export async function generateMetadata({ params: { username } }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { username } = await params
+
     const { user: loggedInUserId } = await validateRequest()
 
     if (!loggedInUserId) return {}
@@ -45,7 +48,8 @@ export async function generateMetadata({ params: { username } }: PageProps): Pro
     }
 }
 
-export default async function Page({ params: { username } }: PageProps) {
+export default async function Page({ params }: PageProps) {
+    const { username } = await params
     const { user: loggedInUserId } = await validateRequest()
 
     if (!loggedInUserId) {
@@ -114,9 +118,11 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
         {user.bio && (
             <>
                 <hr />
-                <div className="whitespace-pre-line overflow-hidden break-words">
-                    {user.bio}
-                </div>
+                <Linkify>
+                    <div className="whitespace-pre-line overflow-hidden break-words">
+                        {user.bio}
+                    </div>
+                </Linkify>
             </>
         )}
     </div>
