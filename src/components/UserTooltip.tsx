@@ -28,7 +28,7 @@ export default function UserTooltip({ children, user }: UserTooltipProps) {
         <TooltipTrigger asChild>
             {children}
         </TooltipTrigger>
-        <TooltipContent className="bg-white border border-secondary-foreground">
+        <TooltipContent className="bg-card border border-secondary-foreground">
             <div className="flex max-w-80 flex-col gap-3 break-words px-1 py-2.5 md:min-w-52 text-secondary-foreground">
                 <div className="flex items-center justify-between gap-2">
                     <Link href={`/users/${user.username}`}>
