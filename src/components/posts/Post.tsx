@@ -30,13 +30,16 @@ export default function Post({ post }: PostProps) {
                     <UserTooltip user={post.user}>
                         <Link
                             href={`/users/${post.user.username}`}
-                            className="block font-medium hover:underline">
+                            className="block font-medium hover:underline"
+                        >
                             {post.user.name}
                         </Link>
                     </UserTooltip>
                     <Link
                         href={`/posts/${post.id}`}
-                        className="block text-sm text-muted-foreground hover:underline">
+                        className="block text-sm text-muted-foreground hover:underline"
+                        suppressHydrationWarning
+                    >
                         {formatRelativeDate(post.createdAt)}
                     </Link>
                 </div>

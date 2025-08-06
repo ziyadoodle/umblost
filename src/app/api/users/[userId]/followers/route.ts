@@ -103,7 +103,7 @@ export async function DELETE(
 
     return new Response();
   } catch (error) {
-    console.error(error);
+    console.error("Error unfollowing user:", error);
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

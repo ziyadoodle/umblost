@@ -35,7 +35,7 @@ export async function GET(
 
     return Response.json(data);
   } catch (error) {
-    console.log(error);
+    console.log("Error fetching posts by userId:", error);
     return Response.json(
       { error: "An error occurred while fetching posts" },
       { status: 500 },

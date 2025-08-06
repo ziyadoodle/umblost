@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
 
     return Response.json(data);
   } catch (error) {
-    console.log(error);
+    console.log("Error in GET /api/posts/following:", error);
     return Response.json(
       { error: "An error occurred while fetching posts" },
       { status: 500 },
