@@ -26,28 +26,30 @@ export default async function MenuBar({ className }: MenuBarProps) {
         (await streamServerClient.getUnreadCount(user.id)).total_unread_count
     ])
 
-    return <div className={className}>
-        <Button
-            variant="ghost"
-            className="flex items-center justify-start gap-3"
-            title="Home"
-            asChild>
-            <Link href="/">
-                <Home className="size-5" />
-                <span className="hidden lg:inline">Home</span>
-            </Link>
-        </Button>
-        <NotificationsButton initialState={{ unreadCount: unreadNotificationCount }} />
-        <MessagesButton initialState={{ unreadCount: unreadMessagesCount }} />
-        <Button
-            variant="ghost"
-            className="flex items-center justify-start gap-3"
-            title="Bookmarks"
-            asChild>
-            <Link href="/bookmarks">
-                <Bookmark className="size-5" />
-                <span className="hidden lg:inline">Bookmarks</span>
-            </Link>
-        </Button>
-    </div>
+    return (
+        <div className={className}>
+            <Button
+                variant="ghost"
+                className="flex items-center justify-start gap-3"
+                title="Home"
+                asChild>
+                <Link href="/">
+                    <Home className="size-5" />
+                    <span className="hidden lg:inline">Home</span>
+                </Link>
+            </Button>
+            <NotificationsButton initialState={{ unreadCount: unreadNotificationCount }} />
+            <MessagesButton initialState={{ unreadCount: unreadMessagesCount }} />
+            <Button
+                variant="ghost"
+                className="flex items-center self-center object-center place-items-center justify-start gap-3"
+                title="Bookmarks"
+                asChild>
+                <Link href="/bookmarks">
+                    <Bookmark className="size-5" />
+                    <span className="hidden lg:inline">Bookmarks</span>
+                </Link>
+            </Button>
+        </div>
+    )
 }
