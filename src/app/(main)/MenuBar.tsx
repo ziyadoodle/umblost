@@ -1,11 +1,11 @@
 import { validateRequest } from "@/auth";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
+import { getUnreadMessagesCount } from "@/lib/stream";
 import { Bookmark, Home } from "lucide-react";
 import Link from "next/link";
 import NotificationsButton from "./NotificationsButton";
 import MessagesButton from "./MessagesButton";
-import streamServerClient from "@/lib/stream";
 
 interface MenuBarProps {
     className?: string;
@@ -23,31 +23,35 @@ export default async function MenuBar({ className }: MenuBarProps) {
                 read: false
             }
         }),
-        (await streamServerClient.getUnreadCount(user.id)).total_unread_count
+        getUnreadMessagesCount(user.id)
     ])
 
     return (
         <div className={className}>
             <Button
                 variant="ghost"
-                className="flex items-center justify-start gap-3"
+                className="flex justify-start"
                 title="Home"
                 asChild>
                 <Link href="/">
-                    <Home className="size-5" />
-                    <span className="hidden lg:inline">Home</span>
+                    <div className="flex items-center gap-3">
+                        <Home className="size-5" />
+                        <span className="hidden lg:inline">Home</span>
+                    </div>
                 </Link>
             </Button>
             <NotificationsButton initialState={{ unreadCount: unreadNotificationCount }} />
             <MessagesButton initialState={{ unreadCount: unreadMessagesCount }} />
             <Button
                 variant="ghost"
-                className="flex items-center self-center object-center place-items-center justify-start gap-3"
+                className="flex justify-start"
                 title="Bookmarks"
                 asChild>
                 <Link href="/bookmarks">
-                    <Bookmark className="size-5" />
-                    <span className="hidden lg:inline">Bookmarks</span>
+                    <div className="flex items-center gap-3">
+                        <Bookmark className="size-5" />
+                        <span className="hidden lg:inline">Bookmarks</span>
+                    </div>
                 </Link>
             </Button>
         </div>

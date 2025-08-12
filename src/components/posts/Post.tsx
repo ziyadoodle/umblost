@@ -68,7 +68,7 @@ export default function Post({ post }: PostProps) {
         )}
         <hr className="text-muted-foreground" />
         <div className="flex justify-between gap-5">
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3">
                 <LikeButton
                     postId={post.id}
                     initialState={{
@@ -141,11 +141,13 @@ interface CommentButtonProps {
 }
 
 function CommentButton({ post, onClick }: CommentButtonProps) {
-    return <button onClick={onClick} className="flex items-center gap-2">
-        <MessageSquare className="size-5" />
-        <span className="text-sm font-medium tabular-nums">
-            {post._count.comments}{" "}
-            <span className="hidden sm:inline">comments</span>
-        </span>
-    </button>
+    return (
+        <button onClick={onClick} className="flex items-center gap-2 cursor-pointer px-3 py-1 rounded-full hover:bg-muted">
+            <MessageSquare className="size-5" />
+            <span className="text-sm font-medium tabular-nums">
+                {post._count.comments}{" "}
+                <span className="hidden sm:inline">comments</span>
+            </span>
+        </button>
+    )
 }

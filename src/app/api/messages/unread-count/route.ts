@@ -1,5 +1,5 @@
 import { validateRequest } from "@/auth";
-import streamServerClient from "@/lib/stream";
+import { getUnreadMessagesCount } from "@/lib/stream";
 import { MessageCountInfo } from "@/lib/types";
 
 export async function GET() {
@@ -10,9 +10,7 @@ export async function GET() {
       return new Response("Unauthorized", { status: 401 });
     }
 
-    const { total_unread_count } = await streamServerClient.getUnreadCount(
-      user.id,
-    );
+    const total_unread_count = await getUnreadMessagesCount(user.id);
 
     const data: MessageCountInfo = {
       unreadCount: total_unread_count,
