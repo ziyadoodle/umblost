@@ -12,7 +12,7 @@ import { notFound } from "next/navigation"
 import { cache, Suspense } from "react"
 
 interface PageProps {
-    params: { postId: string }
+    params: Promise<{ postId: string }>
 }
 
 const getPost = cache(async (postId: string, loggedInUserId: string) => {

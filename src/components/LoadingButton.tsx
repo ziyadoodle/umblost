@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
 import { ComponentProps } from "react";
 
-interface LoadingButtonProps extends ComponentProps<"button"> {
+interface LoadingButtonProps extends ComponentProps<typeof Button> {
     loading: boolean;
 }
 

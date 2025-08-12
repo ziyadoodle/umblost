@@ -24,27 +24,34 @@ export default function NewChatDialog({ onOpenChange, onChatCreated }: NewChatDi
     const searchInputDebounced = useDebounce(searchInput);
 
     const [selectedUsers, setSelectedUsers] = useState<
-        UserResponse<DefaultStreamChatGenerics>[]
+        UserResponse[]
     >([]);
 
     const { data, isFetching, isError, isSuccess } = useQuery({
         queryKey: ["stream-users", searchInputDebounced],
-        queryFn: async () => client.queryUsers({
-            id: { $ne: loggedInUser.id },
-            role: { $ne: "admin" },
-            ...(searchInputDebounced
-                ? {
-                    $or: [
-                        { name: { $autocomplete: searchInputDebounced } },
-                        { username: { $autocomplete: searchInputDebounced } }
-                    ]
-                }
-                : {}
-            )
-        },
-            { name: 1, username: 1 },
-            { limit: 15 }
-        )
+        queryFn: async () => {
+            const response = await client.queryUsers({
+                ...(searchInputDebounced
+                    ? {
+                        $or: [
+                            { name: { $autocomplete: searchInputDebounced } },
+                            { username: { $autocomplete: searchInputDebounced } }
+                        ]
+                    }
+                    : {}
+                )
+            },
+                { name: 1, username: 1 },
+                { limit: 15 }
+            );
+
+            // Filter out current user and admin users
+            const filteredUsers = response.users.filter(
+                user => user.id !== loggedInUser.id && user.role !== "admin"
+            );
+
+            return { ...response, users: filteredUsers };
+        }
     });
 
     const mutation = useMutation({
@@ -154,7 +161,7 @@ export default function NewChatDialog({ onOpenChange, onChatCreated }: NewChatDi
 }
 
 interface UserResultProps {
-    user: UserResponse<DefaultStreamChatGenerics>;
+    user: UserResponse;
     selected: boolean;
     onClick: () => void;
 }
@@ -178,7 +185,7 @@ function UserResult({ user, selected, onClick }: UserResultProps) {
 }
 
 interface SelectedUserTagProps {
-    user: UserResponse<DefaultStreamChatGenerics>;
+    user: UserResponse;
     onRemove: () => void;
 }
 

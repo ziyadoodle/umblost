@@ -4,7 +4,7 @@ import { getUserDataSelect } from "@/lib/types";
 
 export async function GET(
   req: Request,
-  { params }: { params: { username: string } },
+  { params }: { params: Promise<{ username: string }> },
 ) {
   const { username } = await params;
 
