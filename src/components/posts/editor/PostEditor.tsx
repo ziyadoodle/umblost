@@ -34,6 +34,7 @@ export default function PostEditor() {
         onDrop: startUpload
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onClick, ...rootProps } = getRootProps()
 
     const editor = useEditor({
@@ -171,7 +172,7 @@ interface AttachmentPreviewProps {
 }
 
 function AttachmentPreview({
-    attachment: { file, mediaId, isUploading },
+    attachment: { file, isUploading },
     onRemoveClick
 }: AttachmentPreviewProps) {
     const src = URL.createObjectURL(file);
