@@ -14,7 +14,7 @@ export async function signUp(
   credentials: SignUpValues,
 ): Promise<{ error: string }> {
   try {
-    const { email, username, password } = signUpSchema.parse(credentials);
+    const { email, name, nim, password } = signUpSchema.parse(credentials);
 
     const passwordHash = await hash(password, {
       memoryCost: 19456,
@@ -25,18 +25,18 @@ export async function signUp(
 
     const userId = generateIdFromEntropySize(10);
 
-    const existingUsername = await prisma.user.findFirst({
+    const existingNim = await prisma.user.findFirst({
       where: {
-        username: {
-          equals: username,
+        nim: {
+          equals: nim,
           mode: "insensitive",
         },
       },
     });
 
-    if (existingUsername) {
+    if (existingNim) {
       return {
-        error: "Username already exists. Please choose a different one.",
+        error: "NIM already exists!",
       };
     }
 
@@ -60,15 +60,16 @@ export async function signUp(
         data: {
           id: userId,
           email,
-          name: username,
-          username,
+          name,
+          nim,
           passwordHash,
         },
       });
       await streamServerClient.upsertUser({
         id: userId,
-        username,
-        name: username,
+        username: nim,
+        name,
+        role: "user",
       });
     });
 

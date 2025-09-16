@@ -12,12 +12,12 @@ export async function login(
   credentials: LoginValues,
 ): Promise<{ error: string }> {
   try {
-    const { username, password } = loginSchema.parse(credentials);
+    const { nim, password } = loginSchema.parse(credentials);
 
     const existingUser = await prisma.user.findFirst({
       where: {
-        username: {
-          equals: username,
+        nim: {
+          equals: nim,
           mode: "insensitive",
         },
       },
@@ -25,7 +25,7 @@ export async function login(
 
     if (!existingUser || !existingUser.passwordHash) {
       return {
-        error: "Incorrect username or password.",
+        error: "Incorrect NIM or password.",
       };
     }
 
@@ -38,7 +38,7 @@ export async function login(
 
     if (!validPassword) {
       return {
-        error: "Incorrect username or password.",
+        error: "Incorrect NIM or password.",
       };
     }
 

@@ -3,10 +3,9 @@ import { Prisma } from "@prisma/client";
 export function getUserDataSelect(loggedInUserId: string) {
   return {
     id: true,
-    username: true,
+    nim: true,
     name: true,
     avatarUrl: true,
-    bio: true,
     createdAt: true,
     followers: {
       where: {
@@ -89,7 +88,7 @@ export interface CommentsPage {
 export const notificationsInclude = {
   issuer: {
     select: {
-      username: true,
+      nim: true,
       name: true,
       avatarUrl: true,
     },

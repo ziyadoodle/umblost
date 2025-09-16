@@ -11,28 +11,30 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-    return <main className="flex h-screen items-center justify-center p-5">
-        <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
-            <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
-                <h1 className="text-center text-3xl font-bold">Login to UMBLost</h1>
-                <div className="space-y-5">
-                    <GoogleSignInButton />
-                    <div className="flex items-center gap-3">
-                        <div className="h-px flex-1 bg-muted"></div>
-                        <span className="text-xs text-muted-foreground">OR</span>
-                        <div className="h-px flex-1 bg-muted"></div>
+    return (
+        <main className="flex h-screen items-center justify-center p-5">
+            <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
+                <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
+                    <h1 className="text-center text-3xl font-bold">Login to UMBLost</h1>
+                    <div className="space-y-5">
+                        <GoogleSignInButton />
+                        <div className="flex items-center gap-3">
+                            <div className="h-px flex-1 bg-muted"></div>
+                            <span className="text-xs text-muted-foreground">OR</span>
+                            <div className="h-px flex-1 bg-muted"></div>
+                        </div>
+                        <LoginForm />
+                        <Link href="/signup" className="block text-center hover:underline">
+                            Don&apos;t have an account? <span className="text-primary">Sign up</span>
+                        </Link>
                     </div>
-                    <LoginForm />
-                    <Link href="/signup" className="block text-center hover:underline">
-                        Don&apos;t have an account? Sign up
-                    </Link>
                 </div>
+                <Image
+                    src={loginImage}
+                    alt=""
+                    className="hidden w-1/2 object-cover md:block"
+                />
             </div>
-            <Image
-                src={loginImage}
-                alt=""
-                className="hidden w-1/2 object-cover md:block"
-            />
-        </div>
-    </main>
+        </main>
+    )
 }

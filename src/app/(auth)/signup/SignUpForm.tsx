@@ -21,7 +21,7 @@ export default function SignUpForm() {
         defaultValues: {
             email: "",
             name: "",
-            username: "",
+            nim: "",
             password: "",
         }
     })
@@ -52,12 +52,12 @@ export default function SignUpForm() {
             />
             <FormField
                 control={form.control}
-                name="username"
+                name="nim"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel>NIM</FormLabel>
                         <FormControl>
-                            <Input placeholder="Username" {...field} />
+                            <Input placeholder="NIM" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>

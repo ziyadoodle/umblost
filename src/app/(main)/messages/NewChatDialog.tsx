@@ -47,8 +47,10 @@ export default function NewChatDialog({ onOpenChange, onChatCreated }: NewChatDi
 
             // Filter out current user and admin users
             const filteredUsers = response.users.filter(
-                user => user.id !== loggedInUser.id && user.role !== "admin"
+                user => user.id !== loggedInUser.id && user.role == "admin"
             );
+
+            console.log("Filtered users:", filteredUsers);
 
             return { ...response, users: filteredUsers };
         }

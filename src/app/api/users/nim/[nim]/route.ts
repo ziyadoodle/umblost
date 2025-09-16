@@ -4,9 +4,9 @@ import { getUserDataSelect } from "@/lib/types";
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ username: string }> },
+  { params }: { params: Promise<{ nim: string }> },
 ) {
-  const { username } = await params;
+  const { nim } = await params;
 
   try {
     const { user: loggedInUser } = await validateRequest();
@@ -17,8 +17,8 @@ export async function GET(
 
     const user = await prisma.user.findFirst({
       where: {
-        username: {
-          equals: username,
+        nim: {
+          equals: nim,
           mode: "insensitive",
         },
       },

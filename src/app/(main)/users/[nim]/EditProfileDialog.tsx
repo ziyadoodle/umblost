@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { useUpdateProfileMutation } from "./mutations";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { LoadingButton } from "@/components/LoadingButton";
 import Image, { StaticImageData } from "next/image";
 import { useRef, useState } from "react";
@@ -27,7 +26,6 @@ export default function EditProfileDialog({ user, open, onOpenChange }: EditProf
         resolver: zodResolver(updateUserProfileSchema),
         defaultValues: {
             name: user.name,
-            bio: user.bio || "",
         }
     })
 
@@ -79,23 +77,6 @@ export default function EditProfileDialog({ user, open, onOpenChange }: EditProf
                                 <FormLabel>Name</FormLabel>
                                 <FormControl>
                                     <Input placeholder="Your name" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="bio"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Bio</FormLabel>
-                                <FormControl>
-                                    <Textarea
-                                        placeholder="Tell us about yourself"
-                                        className="resize-none"
-                                        {...field}
-                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
           },
           {
             user: {
-              username: {
+              nim: {
                 search: searchQuery,
               },
             },

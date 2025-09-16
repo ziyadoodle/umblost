@@ -2,7 +2,6 @@ import { google, lucia } from "@/auth";
 import kyInstance from "@/lib/ky";
 import prisma from "@/lib/prisma";
 import streamServerClient from "@/lib/stream";
-import { slugify } from "@/lib/utils";
 import { OAuth2RequestError } from "arctic";
 import { generateIdFromEntropySize } from "lucia";
 import { cookies } from "next/headers";
@@ -54,26 +53,29 @@ export async function GET(req: NextRequest) {
         sessionCookie.attributes,
       );
 
-      return new Response(null, { status: 302, headers: { Location: "/" } });
+      return new Response(null, {
+        status: 302,
+        headers: { Location: "/" },
+      });
     }
 
     const userId = generateIdFromEntropySize(10);
 
-    const username = slugify(googleUser.name) + "-" + userId.slice(0, 4);
+    // const username = slugify(googleUser.name) + "-" + userId.slice(0, 4);
 
     await prisma.$transaction(async (tx) => {
       await tx.user.create({
         data: {
           id: userId,
           name: googleUser.name,
-          username,
+          nim: null,
           googleId: googleUser.id,
         },
       });
       await streamServerClient.upsertUser({
         id: userId,
-        username,
-        name: username,
+        username: "",
+        name: googleUser.name,
       });
     });
 
@@ -85,7 +87,10 @@ export async function GET(req: NextRequest) {
       sessionCookie.attributes,
     );
 
-    return new Response(null, { status: 302, headers: { Location: "/" } });
+    return new Response(null, {
+      status: 302,
+      headers: { Location: "/" },
+    });
   } catch (error) {
     console.error("Google OAuth error:", error);
     if (error instanceof OAuth2RequestError) {
