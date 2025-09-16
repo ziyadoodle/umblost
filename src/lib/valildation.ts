@@ -5,10 +5,10 @@ const requiredString = z.string().trim().min(1, "This field is required");
 export const signUpSchema = z.object({
   email: requiredString.email("Invalid email address"),
   name: requiredString.max(50, "Name must be at most 50 characters long"),
-  username: requiredString.regex(
-    /^[a-zA-Z0-9_]+$/,
-    "Username can only contain letters, numbers, dash and underscores",
-  ),
+  nim: requiredString
+    .regex(/^[0-9]+$/, "NIM can only contain numbers")
+    .min(5, "Enter a valid NIM")
+    .max(20, "NIM is not valid"),
   password: requiredString.min(
     8,
     "Password must be at least 8 characters long",
@@ -17,8 +17,17 @@ export const signUpSchema = z.object({
 
 export type SignUpValues = z.infer<typeof signUpSchema>;
 
+export const updateNimSchema = z.object({
+  nim: requiredString
+    .regex(/^[0-9]+$/, "NIM can only contain numbers")
+    .min(5, "Enter a valid NIM")
+    .max(20, "NIM is not valid"),
+});
+
+export type UpdateNimValues = z.infer<typeof updateNimSchema>;
+
 export const loginSchema = z.object({
-  username: requiredString,
+  nim: requiredString,
   password: requiredString,
 });
 
@@ -33,10 +42,6 @@ export const createPostSchema = z.object({
 
 export const updateUserProfileSchema = z.object({
   name: requiredString,
-  bio: z
-    .string()
-    .max(1000, "Bio must be at most 1000 characters long")
-    .optional(),
 });
 
 export type UpdateUserProfileValues = z.infer<typeof updateUserProfileSchema>;

@@ -18,7 +18,7 @@ export default function LoginForm() {
     const form = useForm<LoginValues>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
-            username: "",
+            nim: "",
             password: "",
         }
     });
@@ -31,36 +31,38 @@ export default function LoginForm() {
         })
     }
 
-    return <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-            <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                            <Input placeholder="Username" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-            <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                            <PasswordInput placeholder="Password" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-            <LoadingButton loading={isPending} type="submit" className="w-full">Log in</LoadingButton>
-        </form>
-    </Form>
+    return (
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+                {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                <FormField
+                    control={form.control}
+                    name="nim"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>NIM</FormLabel>
+                            <FormControl>
+                                <Input placeholder="NIM" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Password</FormLabel>
+                            <FormControl>
+                                <PasswordInput placeholder="Password" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <LoadingButton loading={isPending} type="submit" className="w-full">Log in</LoadingButton>
+            </form>
+        </Form>
+    )
 }

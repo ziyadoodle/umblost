@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Mail } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface MessagesButtonProps {
     initialState: MessageCountInfo
@@ -21,10 +22,12 @@ export default function MessagesButton({ initialState }: MessagesButtonProps) {
         refetchInterval: 60 * 1000,
     })
 
+    const pathname = usePathname();
+
     return (
         <Button
             variant="ghost"
-            className="flex items-center justify-start gap-3"
+            className={cn("flex items-center justify-start gap-3", { "bg-primary text-white hover:bg-primary hover:text-white": pathname === "/messages" })}
             title="Messages"
             asChild>
             <Link href="/messages">

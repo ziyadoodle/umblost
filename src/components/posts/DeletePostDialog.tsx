@@ -1,7 +1,6 @@
 import { PostData } from "@/lib/types";
 import { useDeletePostMutation } from "./mutations";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
-import { DialogDescription } from "@radix-ui/react-dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
 import { LoadingButton } from "../LoadingButton";
 import { Button } from "../ui/button";
 

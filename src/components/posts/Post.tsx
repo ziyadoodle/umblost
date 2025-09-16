@@ -10,7 +10,6 @@ import Linkify from "../Linkify";
 import UserTooltip from "../UserTooltip";
 import { Media } from "@prisma/client";
 import Image from "next/image";
-import LikeButton from "./LikeButton";
 import BookmarkButton from "./BookmarkButton";
 import { useState } from "react";
 import { MessageSquare } from "lucide-react";
@@ -29,14 +28,14 @@ export default function Post({ post }: PostProps) {
         <div className="flex justify-between gap-3">
             <div className="flex flex-wrap gap-3">
                 <UserTooltip user={post.user}>
-                    <Link href={`/users/${post.user.username}`}>
+                    <Link href={`/users/${post.user.nim}`}>
                         <UserAvatar avatarUrl={post.user.avatarUrl} />
                     </Link>
                 </UserTooltip>
                 <div>
                     <UserTooltip user={post.user}>
                         <Link
-                            href={`/users/${post.user.username}`}
+                            href={`/users/${post.user.nim}`}
                             className="block font-medium hover:underline"
                         >
                             {post.user.name}
@@ -68,14 +67,14 @@ export default function Post({ post }: PostProps) {
         )}
         <hr className="text-muted-foreground" />
         <div className="flex justify-between gap-5">
-            <div className="flex items-center gap-5">
-                <LikeButton
+            <div className="flex items-center gap-3">
+                {/* <LikeButton
                     postId={post.id}
                     initialState={{
                         likes: post._count.likes,
                         isLikedByUser: post.likes.some(like => like.userId === user.id)
                     }}
-                />
+                /> */}
                 <CommentButton
                     post={post}
                     onClick={() => setShowComments(!showComments)}
@@ -141,11 +140,13 @@ interface CommentButtonProps {
 }
 
 function CommentButton({ post, onClick }: CommentButtonProps) {
-    return <button onClick={onClick} className="flex items-center gap-2">
-        <MessageSquare className="size-5" />
-        <span className="text-sm font-medium tabular-nums">
-            {post._count.comments}{" "}
-            <span className="hidden sm:inline">comments</span>
-        </span>
-    </button>
+    return (
+        <button onClick={onClick} className="flex items-center gap-2 cursor-pointer px-3 py-1 rounded-full hover:bg-muted">
+            <MessageSquare className="size-5" />
+            <span className="text-sm font-medium tabular-nums">
+                {post._count.comments}{" "}
+                <span className="hidden sm:inline">comments</span>
+            </span>
+        </button>
+    )
 }

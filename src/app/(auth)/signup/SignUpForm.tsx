@@ -1,11 +1,10 @@
 "use client";
 
 import { signUpSchema, SignUpValues } from "@/lib/valildation";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
 import { signUp } from "./action";
 import { PasswordInput } from "@/components/PasswordInput";
@@ -22,7 +21,7 @@ export default function SignUpForm() {
         defaultValues: {
             email: "",
             name: "",
-            username: "",
+            nim: "",
             password: "",
         }
     })
@@ -53,12 +52,12 @@ export default function SignUpForm() {
             />
             <FormField
                 control={form.control}
-                name="username"
+                name="nim"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel>NIM</FormLabel>
                         <FormControl>
-                            <Input placeholder="Username" {...field} />
+                            <Input placeholder="NIM" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>

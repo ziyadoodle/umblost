@@ -29,18 +29,18 @@ export default function UserButton({ className }: UserButtonProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
             <DropdownMenuLabel>
-                Logged in as @{user.username}
+                Logged in as @{user.nim}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link href={`/users/${user.username}`}>
+            <Link href={`/users/${user.nim}`}>
                 <DropdownMenuItem>
-                    <UserIcon className="mr-2 size-4" />
+                    <UserIcon className="mr-2 size-4 text-muted-foreground" />
                     Profile
                 </DropdownMenuItem>
             </Link>
             <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
-                    <Monitor className="mr-2 size-4" />
+                    <Monitor className="mr-2 size-4 text-muted-foreground" />
                     Theme
                 </DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
@@ -68,7 +68,7 @@ export default function UserButton({ className }: UserButtonProps) {
                 queryClient.clear();
                 logout()
             }}>
-                <LogOutIcon className="mr-2 size-4" />
+                <LogOutIcon className="mr-2 size-4 text-muted-foreground" />
                 Logout
             </DropdownMenuItem>
         </DropdownMenuContent>
