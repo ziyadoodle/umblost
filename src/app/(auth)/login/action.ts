@@ -1,12 +1,12 @@
 "use server";
 
+import { lucia } from "@/auth";
 import prisma from "@/lib/prisma";
 import { loginSchema, LoginValues } from "@/lib/valildation";
-import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { verify } from "@node-rs/argon2";
-import { lucia } from "@/auth";
-import { redirect } from "next/navigation";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function login(
   credentials: LoginValues,

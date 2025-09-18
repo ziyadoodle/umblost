@@ -1,3 +1,4 @@
+import { PostsPage } from "@/lib/types";
 import { useUploadThing } from "@/lib/uploadthing";
 import { UpdateUserProfileValues } from "@/lib/valildation";
 import {
@@ -7,9 +8,8 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { updateUserProfile } from "./actions";
-import { PostsPage } from "@/lib/types";
 import { toast } from "sonner";
+import { updateUserProfile } from "./actions";
 
 export function useUpdateProfileMutation() {
   const router = useRouter();

@@ -1,14 +1,14 @@
+import { LoadingButton } from "@/components/LoadingButton";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useChatContext } from "stream-chat-react";
-import { useSession } from "../SessionProvider";
-import { useState } from "react";
+import UserAvatar from "@/components/UserAvatar";
 import useDebounce from "@/hooks/useDebounce";
-import { UserResponse } from "stream-chat";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Check, Loader2, SearchIcon, X } from "lucide-react";
-import UserAvatar from "@/components/UserAvatar";
+import { useState } from "react";
 import { toast } from "sonner";
-import { LoadingButton } from "@/components/LoadingButton";
+import { UserResponse } from "stream-chat";
+import { useChatContext } from "stream-chat-react";
+import { useSession } from "../SessionProvider";
 
 interface NewChatDialogProps {
     onOpenChange: (open: boolean) => void;

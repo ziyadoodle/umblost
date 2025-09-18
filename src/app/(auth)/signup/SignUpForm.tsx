@@ -1,14 +1,14 @@
 "use client";
 
-import { signUpSchema, SignUpValues } from "@/lib/valildation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { LoadingButton } from "@/components/LoadingButton";
+import { PasswordInput } from "@/components/PasswordInput";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signUpSchema, SignUpValues } from "@/lib/valildation";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
 import { signUp } from "./action";
-import { PasswordInput } from "@/components/PasswordInput";
-import { LoadingButton } from "@/components/LoadingButton";
 
 export default function SignUpForm() {
 

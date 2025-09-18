@@ -3,7 +3,7 @@ CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "email" TEXT,
     "name" TEXT NOT NULL,
-    "username" TEXT NOT NULL,
+    "nim" TEXT NOT NULL,
     "passwordHash" TEXT,
     "googleId" TEXT,
     "avatarUrl" TEXT,
@@ -45,7 +45,7 @@ CREATE TABLE "posts" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_username_key" ON "users"("username");
+CREATE UNIQUE INDEX "users_nim_key" ON "users"("nim");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_googleId_key" ON "users"("googleId");
