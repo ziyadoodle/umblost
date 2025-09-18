@@ -22,7 +22,7 @@ export default function Notification({ notification }: NotificationProps) {
         FOLLOW: {
             message: `${notification.issuer.name} started following you.`,
             icon: <UserPlus2 className="size-7 text-primary" />,
-            href: `/users/${notification.issuer.username}`
+            href: `/users/${notification.issuer.nim}`
         },
         COMMENT: {
             message: `${notification.issuer.name} commented on your post.`,

@@ -1,19 +1,19 @@
+import avatarPlaceholder from "@/assets/avatar-placeholder.png";
+import CropImageDialog from "@/components/CropImageDialog";
+import { LoadingButton } from "@/components/LoadingButton";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { UserData } from "@/lib/types";
 import { updateUserProfileSchema, UpdateUserProfileValues } from "@/lib/valildation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useUpdateProfileMutation } from "./mutations";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { LoadingButton } from "@/components/LoadingButton";
+import { Camera } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import { useRef, useState } from "react";
-import { Label } from "@/components/ui/label";
-import avatarPlaceholder from "@/assets/avatar-placeholder.png";
-import { Camera } from "lucide-react";
-import CropImageDialog from "@/components/CropImageDialog";
+import { useForm } from "react-hook-form";
 import Resizer from "react-image-file-resizer";
+import { useUpdateProfileMutation } from "./mutations";
 
 interface EditProfileDialogProps {
     user: UserData;

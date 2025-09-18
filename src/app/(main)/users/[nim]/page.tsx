@@ -10,8 +10,8 @@ import { formatDate } from "date-fns"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { cache } from "react"
-import UserPosts from "./UserPosts"
 import EditProfileUserButton from "./EditProfileButton"
+import UserPosts from "./UserPosts"
 
 interface PageProps {
     params: Promise<{ nim: string }>

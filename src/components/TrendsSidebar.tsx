@@ -11,7 +11,6 @@ export default function TrendsSidebar() {
         <div className="sticky top-[5.25rem] hidden md:block lg:w-80 w-72 h-fit flex-none space-y-5">
             <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
                 <Guide />
-                {/* <WhoToFollow /> */}
                 <TrendingTopics />
             </Suspense>
         </div>

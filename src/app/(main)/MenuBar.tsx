@@ -1,10 +1,10 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getUnreadMessagesCount } from "@/lib/stream";
-import NotificationsButton from "./NotificationsButton";
-import MessagesButton from "./MessagesButton";
-import HomeButton from "./HomeButton";
 import BookmarkButton from "./BookmarkButton";
+import HomeButton from "./HomeButton";
+import MessagesButton from "./MessagesButton";
+import NotificationsButton from "./NotificationsButton";
 
 interface MenuBarProps {
     className?: string;

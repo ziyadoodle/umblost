@@ -6,7 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { loginSchema, LoginValues } from "@/lib/valildation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react"
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "./action";
 

@@ -31,7 +31,7 @@ export async function GET(
 
     return Response.json(user);
   } catch (error) {
-    console.log("Error fetching user by username:", error);
+    console.log("Error fetching user by nim:", error);
     return Response.json(
       { error: "An error occurred while fetching user" },
       { status: 500 },
